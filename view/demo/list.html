@@ -1,0 +1,32 @@
+<el-container>
+	<el-main>
+		<el-row>
+			<el-button type="primary" @click="handleNew()">新增</el-button>
+			<el-button type="danger" @click="handleDeleteSelection()">删除所选</el-button>
+		</el-row>
+		<el-row>
+			<el-table ref="multipleTable" stripe :data="list" style="width: 100%" @selection-change="handleSelectionChange">
+				<el-table-column type="selection" width="55">
+				</el-table-column>
+				<el-table-column type="index">
+				</el-table-column>
+				<el-table-column prop="date" label="日期" width="140">
+				</el-table-column>
+				<el-table-column prop="name" label="姓名" width="120">
+				</el-table-column>
+				<el-table-column prop="address" label="地址">
+				</el-table-column>
+				<el-table-column fixed="right" label="操作" width="200">
+					<template slot-scope="scope">
+						<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+						<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+					</template>
+				</el-table-column>
+			</el-table>
+		</el-row>
+		<el-row>
+			<el-pagination layout="total, prev, pager, next, jumper" :total="1000" @current-change="handlePageChange">
+			</el-pagination>
+		</el-row>
+	</el-main>
+</el-container>
